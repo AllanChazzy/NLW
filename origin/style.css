@@ -1,4 +1,4 @@
-/* == Geral ==*/
+/* == Seletores Gerais ==*/
 
 * {
   /*Seletor universal*/
@@ -143,7 +143,6 @@ header img {
 /* === Navigation === */
 nav {
   display: flex;
-
   height: var(--nav-height);
 
   position: fixed;
@@ -153,23 +152,23 @@ nav {
   /*Calcula o Total do elemento e desloca 50% do tamanho para a esquerda no eixo x*/
 }
 
-nav.wrapper {
+nav .wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-nav.scroll {
+nav .scroll {
   background-color: var(--primary-color);
   width: 100vw;
 }
 
-nav.scroll svg:nth-child(1) path {
+nav .scroll svg:nth-child(1) path {
   /*Sudoclass No primeiro SVG aplica*/
   fill: white;
 }
 
-nav.scroll svg:nth-child(2) path {
+nav .scroll svg:nth-child(2) path {
   /*No segundo SVG aplica*/
   stroke: white;
 }
