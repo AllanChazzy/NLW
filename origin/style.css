@@ -1,0 +1,175 @@
+/* == Geral ==*/
+
+* {
+  /*Seletor universal*/
+  margin: 0; /* Shorthand: aplica a todos os margin*/
+  box-sizing: border-box; /*Contar a largura a partir da borda */
+}
+
+:root {
+  /*Seletor do Root*/
+  --primary-color: hsl(170, 100%, 26%); /* Variável: --<Variavel>*/
+  --headline: hsl(210, 11%, 15%);
+  --paragraph: hsl(210, 9%, 31%);
+  --brand-beige: hsl(39, 100%, 97%);
+  --brand-light: hsl(148, 23%, 89%);
+  --nav-height: 7.2rem;
+
+  font-size: 62.5%; /* 1rem = 10px */
+}
+
+body {
+  font-family: 'DM Sans';
+  font-size: 1.6rem;
+  text-align: center;
+}
+
+.wrapper {
+  width: 37.5rem;
+  margin-inline: auto;
+  padding-inline: 2.4rem;
+}
+
+/* === Header === */
+
+header {
+  margin-top: calc(4.1rem + var(--nav-height));
+}
+
+header::before {
+  /*Cria um elemento antes do header*/
+  content: '';
+  width: 100vw; /*Largura da viewport*/
+  height: calc(108rem + var(--nav-height));
+  background-color: var(--brand-light);
+  display: block;
+
+  position: absolute; /*Elemento ficará por cima do conteúdo*/
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+header h4 {
+  font-size: 1.6rem;
+  color: var(--primary-color);
+  margin-bottom: 1.6rem;
+}
+
+header h1 {
+  font-size: 3.4rem;
+  color: var(--secondary-color);
+  line-height: 130%;
+  margin-bottom: 2.4rem;
+}
+
+header p {
+  font-size: 1.4rem;
+  line-height: 150%;
+  font-weight: 400;
+  color: var(--paragraph);
+  margin-bottom: 3.2rem;
+  /* Display: forma de apresentação do elemento.
+     Block: ocupa toda a largura da página, e joga o próximo elemento para baixo    
+  */
+}
+
+button {
+  background-color: var(--primary-color);
+
+  border: none;
+  border-radius: 4rem;
+
+  height: 5.2rem;
+  width: 26.3rem;
+
+  margin-bottom: 6rem;
+
+  color: white;
+  text-transform: uppercase;
+  font-size: 1.4rem;
+  font-weight: 700;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.6rem;
+
+  margin-right: auto;
+  margin-left: auto;
+  /* Display: inline que não utiliza toda a largura da página, utiliza só o tamanho do elemento, assim como imagens.
+     Flex: transforma os elementos em flexíveis 
+  */
+}
+
+header img {
+  width: 26.4rem;
+  display: block;
+  margin-inline: auto;
+  object-position: 0 2rem; /*Alteração da posição do objeto*/
+}
+
+/* Desafio1: #NextLevel*/
+
+.stats {
+  width: 32.7rem;
+  padding-block: 4rem; /*Altera top e bottom*/
+  margin-inline: auto;
+
+  background-color: var(--brand-beige);
+  border: 1px solid var(--brand-light);
+  border-radius: 0.6rem;
+
+  display: flex;
+  flex-direction: column; /*Flex: inversão da direção*/
+  justify-content: center;
+  gap: 6rem;
+}
+
+.stat h3 {
+  font-size: 4.8rem;
+  color: var(--headline);
+  line-height: 130%;
+  margin-bottom: 0.4rem;
+}
+
+.stat p {
+  margin: 0;
+  color: var(--primary-color);
+  font-size: 1.6rem;
+  line-height: 150%;
+}
+
+/* === Navigation === */
+nav {
+  display: flex;
+
+  height: var(--nav-height);
+
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  /*Calcula o Total do elemento e desloca 50% do tamanho para a esquerda no eixo x*/
+}
+
+nav.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav.scroll {
+  background-color: var(--primary-color);
+  width: 100vw;
+}
+
+nav.scroll svg:nth-child(1) path {
+  /*Sudoclass No primeiro SVG aplica*/
+  fill: white;
+}
+
+nav.scroll svg:nth-child(2) path {
+  /*No segundo SVG aplica*/
+  stroke: white;
+}
