@@ -1,8 +1,9 @@
 /* == Seletores Gerais ==*/
 
 * {
-  /*Seletor universal*/
+  /*Seletor Global/Geral*/
   margin: 0; /* Shorthand: aplica a todos os margin*/
+  padding: 0;
   box-sizing: border-box; /*Contar a largura a partir da borda */
 }
 
@@ -18,10 +19,18 @@
   font-size: 62.5%; /* 1rem = 10px */
 }
 
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
 body {
   font-family: 'DM Sans';
   font-size: 1.6rem;
+
   text-align: center;
+  overflow: overlay;
 }
 
 .wrapper {
@@ -30,7 +39,11 @@ body {
   padding-inline: 2.4rem;
 }
 
-/* === Header === */
+ul {
+  list-style: none;
+}
+
+/*============================= Header === */
 
 header {
   margin-top: calc(4.1rem + var(--nav-height));
@@ -39,7 +52,7 @@ header {
 header::before {
   /*Cria um elemento antes do header*/
   content: '';
-  width: 100vw; /*Largura da viewport*/
+  width: 100%; /*Largura da viewport*/
   height: calc(108rem + var(--nav-height));
   background-color: var(--brand-light);
   display: block;
@@ -110,6 +123,7 @@ header img {
 }
 
 /* Desafio1: #NextLevel*/
+/* Desafio2: #NeverStopLearning */
 
 .stats {
   width: 32.7rem;
@@ -140,7 +154,7 @@ header img {
   line-height: 150%;
 }
 
-/* === Navigation === */
+/* =============== Navigation === */
 nav {
   display: flex;
   height: var(--nav-height);
@@ -158,17 +172,118 @@ nav .wrapper {
   justify-content: space-between;
 }
 
-nav .scroll {
+nav.scroll {
   background-color: var(--primary-color);
   width: 100vw;
 }
 
-nav .scroll svg:nth-child(1) path {
-  /*Sudoclass No primeiro SVG aplica*/
+nav.scroll svg:nth-child(1) path {
+  /*pseudoclass No primeiro SVG aplica*/
+  fill: var(--brand-beige);
+}
+
+nav.scroll button path {
+  /*No segundo SVG aplica*/
+  stroke: var(--brand-beige);
+}
+
+nav button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/*======= Menu Expanded === */
+
+body.menu-expanded {
+  overflow: hidden;
+} /* Quando um elemento é expandido de modo que crie barras de rolagem, usar esta propriedade para corrigir */
+
+body.menu-expanded > :not(nav) {
+  display: none;
+}
+
+.menu,
+.close-menu,
+body.menu-expanded .open-menu {
+  opacity: 0;
+  visibility: hidden;
+}
+
+body.menu-expanded .menu,
+body.menu-expanded .close-menu {
+  opacity: 1;
+  visibility: visible;
+}
+
+body.menu-expanded .menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: var(--primary-color);
+
+  width: 100vw;
+  height: 100vh;
+
+  padding-top: var(--nav-height);
+}
+
+body.menu-expanded nav {
+  position: relative;
+}
+
+.menu ul:nth-child(1) {
+  display: flex;
+  flex-direction: column;
+  gap: 4.8rem;
+
+  margin-top: 6rem;
+
+  font-weight: 700;
+  font-size: 2.4rem;
+  line-height: 3.1rem;
+}
+
+.menu ul li a {
+  color: var(--brand-beige);
+  text-decoration: none;
+}
+
+.menu .button {
+  background: #ffffff;
+  border-radius: 4rem;
+
+  font-weight: 700;
+  font-size: 1.8rem;
+  line-height: 2.3rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--primary-color);
+
+  display: inline-block;
+  padding: 1.6rem 3.2rem;
+
+  margin-top: 4.8rem;
+  margin-bottom: 8rem;
+}
+
+.social-links {
+  display: flex;
+  gap: 3.2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+body.menu-expanded .logo,
+body.menu-expanded nav button {
+  position: relative;
+  z-index: 100;
+}
+
+body.menu-expanded .logo path {
   fill: white;
 }
 
-nav .scroll svg:nth-child(2) path {
-  /*No segundo SVG aplica*/
+body.menu-expanded button path {
   stroke: white;
 }
