@@ -1,4 +1,4 @@
-/* == Seletores Gerais ==*/
+/* ============== Seletores Gerais / Padrões ============*/
 
 * {
   /*Seletor Global/Geral*/
@@ -14,9 +14,15 @@
   --paragraph: hsl(210, 9%, 31%);
   --brand-beige: hsl(39, 100%, 97%);
   --brand-light: hsl(148, 23%, 89%);
+
+  --bg-green-light: hsl(180, 14%, 97%);
   --nav-height: 7.2rem;
 
   font-size: 62.5%; /* 1rem = 10px */
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 html,
@@ -31,6 +37,8 @@ body {
 
   text-align: center;
   overflow: overlay;
+
+  background-color: var(--bg-green-light);
 }
 
 .wrapper {
@@ -39,17 +47,196 @@ body {
   padding-inline: 2.4rem;
 }
 
+img {
+  max-width: 100%;
+}
+
 ul {
   list-style: none;
 }
 
-/*============================= Header === */
-
-header {
-  margin-top: calc(4.1rem + var(--nav-height));
+section {
+  padding-block: 10rem;
 }
 
-header::before {
+section header h4 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 150%;
+  letter-spacing: 0.08rem;
+  color: var(--primary-color);
+
+  text-transform: uppercase;
+
+  margin-bottom: 1.6rem;
+}
+section header h2 {
+  font-size: 3rem;
+  line-height: 3.9rem;
+  text-align: center;
+
+  color: var(--headline);
+}
+
+section header h1 {
+  font-size: 3.4rem;
+  color: var(--headline);
+  line-height: 130%;
+  margin-bottom: 2.4rem;
+}
+
+section .content p {
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 150%;
+
+  color: var(--paragraph);
+}
+
+/* =================== NAVIGATION ========= */
+nav {
+  display: flex;
+  height: var(--nav-height);
+
+  position: fixed;
+  top: 0;
+  width: 100vw;
+
+  z-index: 100;
+}
+
+nav .wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+nav.scroll {
+  background-color: var(--primary-color);
+}
+
+nav.scroll .logo path {
+  /*pseudoclass No primeiro SVG aplica*/
+  fill: var(--brand-beige);
+}
+
+nav.scroll button path {
+  /*No segundo SVG aplica*/
+  stroke: var(--brand-beige);
+}
+
+nav button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/*===================== MENU EXPANDED === */
+
+.menu {
+  transform: translateY(100%);
+}
+
+body.menu-expanded {
+  overflow: hidden;
+} /* Quando um elemento é expandido de modo que crie barras de rolagem, usar esta propriedade para corrigir */
+
+body.menu-expanded > :not(nav) {
+  visibility: hidden;
+}
+
+.menu,
+.close-menu,
+body.menu-expanded .open-menu {
+  opacity: 0;
+  visibility: hidden;
+}
+
+body.menu-expanded .menu,
+body.menu-expanded .close-menu {
+  opacity: 1;
+  visibility: visible;
+}
+
+body.menu-expanded .menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: var(--primary-color);
+
+  width: 100vw;
+  height: 100vh;
+
+  padding-top: var(--nav-height);
+
+  transition: transform 200ms;
+
+  transform: translateY(0);
+}
+
+.menu ul:nth-child(1) {
+  display: flex;
+  flex-direction: column;
+  gap: 4.8rem;
+
+  margin-top: 6rem;
+
+  font-weight: 700;
+  font-size: 2.4rem;
+  line-height: 3.1rem;
+}
+
+.menu ul li a {
+  color: var(--brand-beige);
+  text-decoration: none;
+}
+
+.menu .button {
+  background: #ffffff;
+  border-radius: 4rem;
+  font-weight: 700;
+  font-size: 1.8rem;
+  line-height: 2.3rem;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  color: var(--primary-color);
+
+  display: inline-block;
+  padding: 1.6rem 3.2rem;
+
+  margin-top: 4.8rem;
+  margin-bottom: 8rem;
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3.2rem;
+}
+
+body.menu-expanded .logo,
+body.menu-expanded nav button {
+  position: relative;
+  z-index: 100;
+}
+
+body.menu-expanded .logo path {
+  fill: white;
+}
+
+body.menu-expanded button path {
+  stroke: white;
+}
+
+/*========================= #HOME === */
+
+#home {
+  padding-top: calc(4.1rem + var(--nav-height));
+}
+
+#home::before {
   /*Cria um elemento antes do header*/
   content: '';
   width: 100%; /*Largura da viewport*/
@@ -63,21 +250,8 @@ header::before {
   z-index: -1;
 }
 
-header h4 {
-  font-size: 1.6rem;
-  color: var(--primary-color);
-  margin-bottom: 1.6rem;
-}
-
-header h1 {
-  font-size: 3.4rem;
-  color: var(--secondary-color);
-  line-height: 130%;
-  margin-bottom: 2.4rem;
-}
-
-header p {
-  font-size: 1.4rem;
+#home p {
+  font-size: 1.8rem;
   line-height: 150%;
   font-weight: 400;
   color: var(--paragraph);
@@ -87,7 +261,7 @@ header p {
   */
 }
 
-button {
+#home button {
   background-color: var(--primary-color);
 
   border: none;
@@ -115,17 +289,18 @@ button {
   */
 }
 
-header img {
+#home img {
   width: 26.4rem;
   display: block;
   margin-inline: auto;
   object-position: 0 2rem; /*Alteração da posição do objeto*/
 }
 
-/* Desafio1: #NextLevel*/
+/* Desafio1: #NextLevel */
 /* Desafio2: #NeverStopLearning */
+/* Desafio3: #NewSkills  */
 
-.stats {
+#home .stats {
   width: 32.7rem;
   padding-block: 4rem; /*Altera top e bottom*/
   margin-inline: auto;
@@ -140,150 +315,57 @@ header img {
   gap: 6rem;
 }
 
-.stat h3 {
+#home .stat h3 {
   font-size: 4.8rem;
   color: var(--headline);
   line-height: 130%;
   margin-bottom: 0.4rem;
 }
 
-.stat p {
+#home .stat p {
   margin: 0;
   color: var(--primary-color);
   font-size: 1.6rem;
   line-height: 150%;
 }
 
-/* =============== Navigation === */
-nav {
-  display: flex;
-  height: var(--nav-height);
-
-  position: fixed;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  /*Calcula o Total do elemento e desloca 50% do tamanho para a esquerda no eixo x*/
-}
-
-nav .wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-nav.scroll {
-  background-color: var(--primary-color);
-  width: 100vw;
-}
-
-nav.scroll svg:nth-child(1) path {
-  /*pseudoclass No primeiro SVG aplica*/
-  fill: var(--brand-beige);
-}
-
-nav.scroll button path {
-  /*No segundo SVG aplica*/
-  stroke: var(--brand-beige);
-}
-
-nav button {
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-/*======= Menu Expanded === */
-
-body.menu-expanded {
-  overflow: hidden;
-} /* Quando um elemento é expandido de modo que crie barras de rolagem, usar esta propriedade para corrigir */
-
-body.menu-expanded > :not(nav) {
-  display: none;
-}
-
-.menu,
-.close-menu,
-body.menu-expanded .open-menu {
-  opacity: 0;
-  visibility: hidden;
-}
-
-body.menu-expanded .menu,
-body.menu-expanded .close-menu {
-  opacity: 1;
-  visibility: visible;
-}
-
-body.menu-expanded .menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: var(--primary-color);
-
-  width: 100vw;
-  height: 100vh;
-
-  padding-top: var(--nav-height);
-}
-
-body.menu-expanded nav {
-  position: relative;
-}
-
-.menu ul:nth-child(1) {
+/*===================================== SERVICES ======= */
+#services .cards {
   display: flex;
   flex-direction: column;
-  gap: 4.8rem;
 
-  margin-top: 6rem;
-
-  font-weight: 700;
-  font-size: 2.4rem;
-  line-height: 3.1rem;
-}
-
-.menu ul li a {
-  color: var(--brand-beige);
-  text-decoration: none;
-}
-
-.menu .button {
-  background: #ffffff;
-  border-radius: 4rem;
-
-  font-weight: 700;
-  font-size: 1.8rem;
-  line-height: 2.3rem;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: var(--primary-color);
-
-  display: inline-block;
-  padding: 1.6rem 3.2rem;
-
-  margin-top: 4.8rem;
-  margin-bottom: 8rem;
-}
-
-.social-links {
-  display: flex;
   gap: 3.2rem;
-  align-items: center;
-  justify-content: center;
 }
 
-body.menu-expanded .logo,
-body.menu-expanded nav button {
-  position: relative;
-  z-index: 100;
+#services header h2 {
+  margin-bottom: 6rem;
 }
 
-body.menu-expanded .logo path {
-  fill: white;
+.card {
+  padding: 2.4rem;
+  text-align: left;
+
+  background: white;
+  border: 1px solid var(--brand-light);
+  border-radius: 0.6rem;
 }
 
-body.menu-expanded button path {
-  stroke: white;
+.card h3 {
+  margin-block: 1.6rem;
+}
+
+/*===================================== SERVICES ======= */
+#about {
+  text-align: left;
+  background-color: var(--brand-beige);
+}
+
+#about h2 {
+  margin-bottom: 2.4rem;
+  text-align: left;
+}
+
+#about .content p {
+  margin-top: 2.4rem;
+  margin-bottom: 6rem;
 }
