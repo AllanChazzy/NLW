@@ -12,3 +12,4 @@
 - Aplica os melhores conceitos de CSS, utilizando recursos como `pseudo-class`, `media queries`, e até uma Biblioteca JavaScript para aninação chamada [ScrollReveal](http://scrollrevealjs.org/). O principal conceito sem dúvidas foi o **Mobile First**.
 - Melhor do que explicar o projeto é ver na prática:
   - Link do Projeto desenvolvido por mim: [DoctorView](https://allanchazzy.github.io/NLW/)
+  ![Project Cover](./Cover.png)
